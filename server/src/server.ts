@@ -6,6 +6,18 @@ let currentTimeout: NodeJS.Timeout | null = null;
 
 const app = express();
 const PORT = 5050;
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'http://localhost:5173');
+
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept'
+  );
+
+  res.header('Access-Control-Allow-Methods', 'GET');
+
+  next();
+});
 
 app.get('/', (req, res) => {
   res.send('Hello from the TypeScript Express server!');
@@ -32,7 +44,7 @@ app.get('/users', async (req, res) => {
   currentTimeout = setTimeout(async () => {
     const results = await getUser(email, number);
 
-    if (!results || results.length === 0) {
+    if (!results) {
       return res
         .status(204)
         .json({ error: 'No users found with the provided criteria.' });

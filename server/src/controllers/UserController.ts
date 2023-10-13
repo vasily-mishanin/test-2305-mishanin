@@ -26,7 +26,6 @@ export const getUser = async (
     } else if (number) {
       return user.number.includes(number);
     }
-    return false;
   });
 
   return results;

@@ -1,0 +1,27 @@
+.inputWrapper {
+  width: 100%;
+  position: relative;
+}
+
+.input {
+  width: 100%;
+  max-width: 15rem;
+  padding: 0.25rem;
+  outline: none;
+  border: 1px solid var(--color-active);
+  border-radius: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.errorField {
+  color: var(--color-error);
+  font-size: 0.75rem;
+  height: 0.8rem;
+}
+
+.requiredMark {
+  color: var(--color-main-light);
+  position: absolute;
+  top: -12px;
+  left: -5px;
+}

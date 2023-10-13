@@ -14,10 +14,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const UserController_1 = require("./controllers/UserController");
-const validate_1 = require("./utils/validate");
 let currentTimeout = null;
 const app = (0, express_1.default)();
 const PORT = 5050;
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', 'http://localhost:5173');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    res.header('Access-Control-Allow-Methods', 'GET');
+    next();
+});
 app.get('/', (req, res) => {
     res.send('Hello from the TypeScript Express server!');
 });
@@ -28,9 +33,9 @@ app.get('/users', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             .status(400)
             .json({ error: 'Please provide an email, a number, or both.' });
     }
-    if (!(0, validate_1.validateEmail)(email) || !(0, validate_1.validatePhoneNumber)(number)) {
-        return res.status(400).json({ error: 'Phone Number or Email not valid' });
-    }
+    //   if (!validateEmail(email) || !validatePhoneNumber(number)) {
+    //     return res.status(400).json({ error: 'Phone Number or Email not valid' });
+    //   }
     if (currentTimeout) {
         clearTimeout(currentTimeout);
         currentTimeout = null;
