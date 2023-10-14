@@ -1,6 +1,6 @@
 #### Teast Challenge from 2305
 
-This is a simple fullstack web app on Typscript:
+This is a simple fullstack web app on Typescript:
 Server - Node JS on Express.js
 Clietn - React JS bundled with Vite
 

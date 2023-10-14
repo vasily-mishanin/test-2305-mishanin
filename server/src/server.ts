@@ -1,6 +1,6 @@
 import express from 'express';
 import { getUser } from './controllers/UserController';
-import { validateEmail, validatePhoneNumber } from './utils/validate';
+import { validateEmail } from './utils/validate';
 
 let currentTimeout: NodeJS.Timeout | null = null;
 
@@ -32,9 +32,9 @@ app.get('/users', async (req, res) => {
       .json({ error: 'Please provide an email, a number, or both.' });
   }
 
-  //   if (!validateEmail(email) || !validatePhoneNumber(number)) {
-  //     return res.status(400).json({ error: 'Phone Number or Email not valid' });
-  //   }
+  if (!validateEmail(email)) {
+    return res.status(400).json({ error: 'Email not valid' });
+  }
 
   if (currentTimeout) {
     clearTimeout(currentTimeout);

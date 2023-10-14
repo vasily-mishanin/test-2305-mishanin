@@ -1,27 +1,29 @@
+'use client';
+import SearchForm from './components/SearchForm';
+import { IUserData } from './components/SearchForm/types';
 import { useState } from 'react';
-import SearchForm from '../components/SearchForm/SearchForm';
-import { IUserData } from '../components/SearchForm/types';
-import SearchResults from '../components/SearchResults/SearchResults';
+import SearchResults from './components/SearchResults';
+import { delay } from './utils/delay';
 
-function Home() {
-  const [searchResults, setSearchResults] = useState<IUserData[] | null>([]);
+export default function Home() {
+  const [searchResults, setSearchResults] = useState<IUserData[] | null>(null);
   const [loading, setLoading] = useState(false);
 
   const handleSearch = async ({ email, number }: IUserData) => {
-    const baseURL = 'http://localhost:5050';
     const searchQuery = `${email ? `email=${email}` : ''}${
       number ? `&number=${number}` : ''
     }`;
 
     try {
       setLoading(true);
-      console.log(`${baseURL}/users?${searchQuery}`);
-      const res = await fetch(`${baseURL}/users?${searchQuery}`);
+      await delay(3000);
+      const res = await fetch(`api/users?${searchQuery}`);
       setLoading(false);
       if (res.status === 204) {
         setSearchResults(null);
       }
       const searchResults: IUserData[] = await res.json();
+      console.log({ res, searchResults });
       setSearchResults(searchResults);
     } catch (error) {
       if (error instanceof Error) {
@@ -36,7 +38,7 @@ function Home() {
     if (!loading && searchResults && searchResults.length > 0) {
       return <SearchResults data={searchResults} />;
     }
-    if (!loading && !searchResults) {
+    if (!loading && searchResults?.length === 0) {
       return <p>🤷 no such a user...</p>;
     }
     if (loading) {
@@ -45,18 +47,10 @@ function Home() {
   };
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '2rem',
-        alignItems: 'center',
-      }}
-    >
-      <h1>3205 test - V. Mishanin</h1>
-      <SearchForm onSearch={handleSearch} />
+    <main className='flex flex-col items-center justify-between p-24'>
+      <h1 className='text-2xl mb-8'>3205 test - V. Mishanin</h1>
+      <SearchForm onSearch={handleSearch} disabled={loading} />
       <UserSearchResults />
-    </div>
+    </main>
   );
 }
-export default Home;
