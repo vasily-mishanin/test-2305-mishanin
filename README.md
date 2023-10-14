@@ -21,7 +21,7 @@ OR
 To run client:
 from `/client` directory run the following scripts  
  `npm install`  
-then
+then  
 `npm run dev` (on http://localhost:5173)
 
 OR  
