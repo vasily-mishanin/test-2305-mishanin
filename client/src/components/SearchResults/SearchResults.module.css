@@ -1,6 +1,5 @@
 .wrapper {
   padding: 1rem;
-  color: var(--color-main-light);
 }
 
 .table {
@@ -10,6 +9,11 @@
 
 .table > thead {
   background: var(--color-main-dark);
+  color: var(--color-main-light);
+}
+
+.table > tbody {
+  color: var(--color-main-light);
 }
 
 .table td {

@@ -14,11 +14,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const UserController_1 = require("./controllers/UserController");
+const validate_1 = require("./utils/validate");
 let currentTimeout = null;
 const app = (0, express_1.default)();
 const PORT = 5050;
+const allowedOrigins = [
+    'http://localhost:5173',
+    'http://localhost:4173',
+    'http://localhost:3173',
+];
 app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', 'http://localhost:5173');
+    const origin = req.get('Origin');
+    if (origin && allowedOrigins.includes(origin)) {
+        res.header('Access-Control-Allow-Origin', origin);
+    }
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     res.header('Access-Control-Allow-Methods', 'GET');
     next();
@@ -33,16 +42,16 @@ app.get('/users', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             .status(400)
             .json({ error: 'Please provide an email, a number, or both.' });
     }
-    //   if (!validateEmail(email) || !validatePhoneNumber(number)) {
-    //     return res.status(400).json({ error: 'Phone Number or Email not valid' });
-    //   }
+    if (!(0, validate_1.validateEmail)(email)) {
+        return res.status(400).json({ error: 'Email not valid' });
+    }
     if (currentTimeout) {
         clearTimeout(currentTimeout);
         currentTimeout = null;
     }
     currentTimeout = setTimeout(() => __awaiter(void 0, void 0, void 0, function* () {
         const results = yield (0, UserController_1.getUser)(email, number);
-        if (!results || results.length === 0) {
+        if (!results) {
             return res
                 .status(204)
                 .json({ error: 'No users found with the provided criteria.' });

@@ -2,7 +2,7 @@ import styles from './SearchForm.module.css';
 import Input from '../Input/Input';
 import { validateEmail } from '../../utils/validate';
 import { useState } from 'react';
-import { FormProps, FormState, IUserData } from './types';
+import { FormProps, FormState } from './types';
 
 const initialFormState = {
   email: { value: '', error: '' },

@@ -32,7 +32,6 @@ const getUser = (email, number) => __awaiter(void 0, void 0, void 0, function* (
         else if (number) {
             return user.number.includes(number);
         }
-        return false;
     });
     return results;
 });
