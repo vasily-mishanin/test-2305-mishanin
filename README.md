@@ -1,20 +1,39 @@
 #### Teast Challenge from 2305
 
-This is a simple fullstack web app on Typescript:
-Server - Node JS on Express.js
-Clietn - React JS bundled with Vite
+This is a simple fullstack web app on Typescript as a challenge task.
+Tha app idea is simple - you search for a user by their email or/and phone number and get results below the search form.
+I've made this app in two variants:
 
-To run local server:
+##### 1. Separate backend and frontend
 
-- from /server directory run the following scripts  
-  npm install
+- Server - Node JS on Express.js - /sever
+- Client - React JS bundled with Vite - /client
 
-  npm run dev
+To run local server (on http://localhost:5050):
+from `/server` directory run the following scripts  
+ `npm install`
+then
+`npm run dev`
+OR
+` npm run build`
+`npm start`
 
-- from /client directory run the following scripts  
-  npm install
+To run client (on http://localhost:5173):
+from `/client` directory run the following scripts  
+ `npm install`
+then
+`npm run dev`  
+ OR
+` npm run build`
+`npm start`
 
-  npm run dev  
-   OR
-  npm run build  
-  npm start
+##### 2. Fullstack app on Next.js 13 (with app router) and Tailwind CSS with DaisyUI
+
+To run the app (on http://localhost:3000):
+from `/users-next-js` directory run the following scripts
+`npm install`
+then
+`npm run dev`
+OR
+`npm run build`
+`npm start`
