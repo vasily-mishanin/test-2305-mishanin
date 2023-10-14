@@ -48,7 +48,7 @@ const getDataFromFile = async (): Promise<IUserData[]> => {
   return JSON.parse(fileData) as IUserData[];
 };
 
-export const getUser = async (
+const getUser = async (
   email?: string,
   number?: string
 ): Promise<IUserData[]> => {

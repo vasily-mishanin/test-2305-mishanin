@@ -11,30 +11,30 @@ I've made this app in two variants:
 
 To run local server (on http://localhost:5050):
 from `/server` directory run the following scripts  
- `npm install`
+ `npm install`  
 then
-`npm run dev`
+`npm run dev`  
 OR
-`npm run build`
+`npm run build`  
 `npm start`
 
 To run client:
 from `/client` directory run the following scripts  
- `npm install`
+ `npm install`  
 then
 `npm run dev` (on http://localhost:5173)
 
 OR
-`npm run build`
+`npm run build`  
 `npm run preview` (on http://localhost:4173)
 
 #### 2. Fullstack app on Next.js 13 (with app router) and Tailwind CSS with DaisyUI - /users-next-js
 
 To run the app (on http://localhost:3000):
-from `/users-next-js` directory run the following scripts
-`npm install`
-then
-`npm run dev`
-OR
-`npm run build`
+from `/users-next-js` directory run the following scripts  
+`npm install`  
+then  
+`npm run dev`  
+OR  
+`npm run build`  
 `npm start`

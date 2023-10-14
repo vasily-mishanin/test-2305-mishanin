@@ -39,16 +39,16 @@ export default function Home() {
       return <SearchResults data={searchResults} />;
     }
     if (!loading && searchResults?.length === 0) {
-      return <p>🤷 no such a user...</p>;
+      return <p className='text-gray-200'>🤷 no such a user...</p>;
     }
     if (loading) {
-      return <p>🔍 searching...</p>;
+      return <p className='text-gray-200'>🔍 searching...</p>;
     }
   };
 
   return (
     <main className='flex flex-col items-center justify-between p-24'>
-      <h1 className='text-2xl mb-8'>3205 test - V. Mishanin</h1>
+      <h1 className='text-2xl mb-8 text-gray-200'>3205 test - V. Mishanin</h1>
       <SearchForm onSearch={handleSearch} disabled={loading} />
       <UserSearchResults />
     </main>
